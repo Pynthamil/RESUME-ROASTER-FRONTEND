@@ -1,13 +1,663 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;500;600;700&display=swap');
+
+
+/* === Enhanced Theme Variables === */
+:root {
+  /* Light Theme - Peach Candy */
+  --bg-color: #FFF0F5;
+  --container-bg: #FFD5CB;
+  --border-color: #FF9E7D;
+  --text-color: #FF5E3A;
+  --roast-bg: #EBFFE3;
+  --roast-border: #7ED957;
+  --button-bg: #FFE5B4;
+  --button-text: #FF8C42;
+  --link-color: #FF8C42;
+  --heading-color: #FF5E3A;
+  --shadow-color: rgba(255, 94, 58, 0.2);
+  --pixel-shadow: 4px 4px 0px var(--border-color);
+  --pixel-inset: inset 3px 3px 0px var(--shadow-color);
+  --success-color: #7ED957;
+  --error-color: #FF6B6B;
+  --pixel-corners: 0;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.dark-theme {
+  /* Dark Theme - Cyber Neon */
+  --bg-color: #e5d990;
+  --container-bg: #EBEAFF;
+  --border-color: #9694FF;
+  --text-color: #006BFF;
+  --roast-bg: #D2E0FB;
+  --roast-border: #006BFF;
+  --button-bg: #FF6B6B;       /* Brighter, more vibrant red */
+  --button-text: #FFE5E5;     /* Soft pinkish-white for better contrast */
+  --button-border: #E83A3A;   /* Deeper red border */
+  --button-hover-bg: #E83A3A; /* Darker red on hover */
+  --button-hover-text: #FFFFFF;
+  --button-shadow: #AC1754;
+  --link-color: #b8d0ff;
+  --heading-color: #0460e0;
+  --shadow-color: rgba(0, 0, 0, 0.3);
+  --pixel-shadow: 4px 4px 0px var(--border-color);
+  --pixel-inset: inset 3px 3px 0px var(--shadow-color);
+  --success-color: #06D6A0;
+  --error-color: #EF476F;
+  --pixel-corners: 0;
+}
+
+/* === Base Styles with Pixel Effects === */
+body {
+  background: var(--bg-color);
+  color: var(--text-color);
+  font-family: 'Pixelify Sans', cursive;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+  padding: 20px;
+  transition: all 0.5s ease;
+  overflow: hidden;
+  background-image: 
+    linear-gradient(var(--shadow-color) 1px, transparent 1px),
+    linear-gradient(90deg, var(--shadow-color) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+/* === Pixel Art Container === */
+.container {
+  background: var(--container-bg);
+  border: 3px solid var(--border-color);
+  width: 300px;
+  padding: 20px;
+  border-radius: var(--pixel-corners);
+  box-shadow: var(--pixel-shadow);
+  text-align: center;
+  margin: 0 auto;
+  position: relative;
+  transition: all 0.3s ease;
+  transform-style: preserve-3d;
+}
+
+.container::before {
+  content: '';
+  position: absolute;
+  top: -8px;
+  left: -8px;
+  right: -8px;
+  bottom: -8px;
+  border: 2px dashed var(--border-color);
+  border-radius: var(--pixel-corners);
+  z-index: -1;
+  opacity: 0.5;
+  animation: pixelBorderPulse 3s infinite linear;
+}
+
+.box {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  position: relative;
+}
+
+/* === Enhanced Image Styles === */
+.box img {
+  width: 100%;
+  max-width: 260px;
+  height: 160px;
+  border-radius: var(--pixel-corners);
+  object-fit: cover;
+  border: 3px solid var(--border-color);
+  box-shadow: var(--pixel-shadow);
+  margin: 0 auto;
+  display: block;
+  transition: all 0.3s ease;
+  image-rendering: pixelated;
+  background: repeating-conic-gradient(#ccc 0% 25%, #eee 0% 50%) 50% / 10px 10px;
+}
+
+.box img:hover {
+  transform: scale(1.02) translate(-2px, -2px);
+  box-shadow: 6px 6px 0px var(--border-color);
+}
+
+/* === Pixel Art Input === */
+.input-wrapper {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--pixel-corners);
+  box-shadow: var(--pixel-inset);
+}
+
+input[type="file"] {
+  width: 100%;
+  margin: 0 auto;
+  font-family: 'Pixelify Sans', cursive;
+  font-size: 14px;
+  background: var(--container-bg);
+  color: var(--text-color);
+  padding: 8px;
+  border-radius: var(--pixel-corners);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+
+/* === Enhanced Button Styles === */
+.button-box {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.upload {
+  border: none;
+  border-radius: var(--pixel-corners);
+  height: 40px;
+  width: 40px;
+  background-color: var(--button-bg);
+  color: var(--text-color);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--pixel-shadow);
+  position: relative;
+  overflow: hidden;
+}
+
+.upload:hover {
+  background-color: var(--button-text);
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px var(--border-color);
+}
+
+
+.upload::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 5px,
+    rgba(255,255,255,0.2) 5px,
+    rgba(255,255,255,0.2) 10px
+  );
+  top: 0;
+  left: -100%;
+  transition: all 0.5s ease;
+}
+
+.upload:hover::after {
+  left: 100%;
+}
+
+.roaster {
+  background: var(--button-bg);
+  color: var(--button-text);
+  border: 3px solid var(--button-text);
+  font-weight: bold;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: var(--pixel-corners);
+  cursor: pointer;
+  font-family: 'Pixelify Sans', cursive;
+  letter-spacing: 0.5px;
+  flex-grow: 1;
+  box-shadow: var(--pixel-shadow);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  text-transform: uppercase;
+}
+
+.roaster:hover {
+  background: var(--button-text);
+  color: var(--container-bg);
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px var(--border-color);
+}
+
+.roaster:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: var(--pixel-inset);
+}
+
+.roaster::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    to bottom right,
+    rgba(255,255,255,0.3),
+    rgba(255,255,255,0)
+  );
+  transform: rotate(30deg);
+  transition: all 0.5s ease;
+}
+
+.roaster:hover::before {
+  left: 100%;
+  top: 100%;
+}
+
+/* === Enhanced Link Styles === */
+.uploaded-link {
+  margin-top: 10px;
+  font-size: 14px;
+  color: var(--text-color);
+  text-shadow: 1px 1px 0px var(--shadow-color);
+}
+
+.uploaded-link a {
+  color: var(--link-color);
+  text-decoration: none;
+  font-weight: bold;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.uploaded-link a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--link-color);
+  transition: width 0.3s ease;
+}
+
+.uploaded-link a:hover {
+  text-shadow: 0 0 8px var(--shadow-color);
+}
+
+.uploaded-link a:hover::after {
+  width: 100%;
+}
+
+/* === Enhanced Roast Result Styles === */
+.roast-result {
+  background: var(--roast-bg);
+  border: 3px solid var(--roast-border);
+  border-radius: var(--pixel-corners);
+  padding: 15px;
+  margin: 15px auto 0;
+  width: calc(100% - 30px);
+  max-height: 200px;
+  overflow-y: auto;
+  color: var(--text-color);
+  font-size: 14px;
+  line-height: 1.6;
+  box-shadow: var(--pixel-inset);
+  display: block;
+  box-sizing: border-box;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.roast-result::before {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  right: 2px;
+  bottom: 2px;
+  border: 1px dashed var(--roast-border);
+  border-radius: var(--pixel-corners);
+  pointer-events: none;
+  opacity: 0.3;
+}
+
+.roast-result h3 {
+  color: var(--heading-color);
+  margin: 0 0 10px 0;
+  font-size: 16px;
+  text-align: center;
+  border-bottom: 2px dashed var(--roast-border);
+  padding-bottom: 8px;
+  text-shadow: 2px 2px 0px var(--shadow-color);
+  letter-spacing: 1px;
+}
+
+.roast-content {
+  text-align: left;
+  padding: 0 10px;
+}
+
+.roast-heading {
+  color: var(--button-text);
+  margin: 15px 0 10px 0;
+  font-size: 15px;
+  font-weight: bold;
+  text-shadow: 1px 1px 0px var(--shadow-color);
+  display: flex;
+  align-items: center;
+}
+
+.roast-heading::before {
+  content: '▶';
+  margin-right: 8px;
+  font-size: 12px;
+  color: var(--roast-border);
+}
+
+.roast-paragraph {
+  margin: 10px 0;
+  line-height: 1.6;
+  position: relative;
+  padding-left: 15px;
+}
+
+.roast-paragraph::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: var(--roast-border);
+}
+
+/* === Enhanced Theme Toggle === */
+.theme-toggle {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: var(--container-bg);
+  border: 3px solid var(--border-color);
+  border-radius: var(--pixel-corners);
+  padding: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 10;
+  box-shadow: var(--pixel-shadow);
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.theme-toggle:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px var(--border-color);
+  background: var(--button-bg);
+}
+
+.theme-icon {
+  width: 20px;
+  height: 20px;
+  filter: drop-shadow(1px 1px 0px var(--shadow-color));
+  transition: all 0.3s ease;
+}
+
+/* === Pixel Animations === */
+@keyframes pixelBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+@keyframes pixelBorderPulse {
+  0% { opacity: 0.3; }
+  50% { opacity: 0.7; }
+  100% { opacity: 0.3; }
+}
+
+@keyframes pixelGlow {
+  0% { box-shadow: 0 0 5px var(--shadow-color); }
+  50% { box-shadow: 0 0 15px var(--shadow-color); }
+  100% { box-shadow: 0 0 5px var(--shadow-color); }
+}
+
+.loading-dots {
+  display: inline-flex;
+  gap: 6px;
+  align-items: center;
+  justify-content: center;
+}
+
+.loading-dots span {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  background-color: var(--button-text);
+  border-radius: var(--pixel-corners);
+  animation: pixelBounce 1.4s infinite ease-in-out;
+  box-shadow: 2px 2px 0px var(--shadow-color);
+}
+
+.loading-dots span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.loading-dots span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+/* === Status Messages === */
+.status-message {
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: var(--pixel-corners);
+  font-weight: bold;
+  text-align: center;
+  box-shadow: var(--pixel-inset);
+  animation: pixelGlow 2s infinite;
+}
+
+.success-message {
+  background-color: rgba(126, 217, 87, 0.2);
+  border: 2px solid var(--success-color);
+  color: var(--success-color);
+}
+
+.error-message {
+  background-color: rgba(239, 71, 111, 0.2);
+  border: 2px solid var(--error-color);
+  color: var(--error-color);
+}
+
+/* === Enhanced Navbar === */
+.navbar {
+  background: var(--container-bg);
+  border-bottom: 3px solid var(--border-color);
+  padding: 12px 20px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  box-shadow: var(--pixel-shadow);
+  font-family: 'Pixelify Sans', cursive;
+}
+
+.navbar a {
+  text-decoration: none;
+}
+
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.navbar-logo h1 {
+  color: var(--heading-color);
+  font-size: 1.8rem;
+  margin: 0;
+  text-shadow: 2px 2px 0px var(--shadow-color);
+  transition: all 0.3s ease;
+  letter-spacing: 1px;
+}
+
+.navbar-logo:hover h1 {
+  color: var(--button-text);
+  transform: translate(-2px, -2px);
+  text-shadow: 4px 4px 0px var(--shadow-color);
+}
+
+.navbar-controls {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.navbar-button {
+  padding: 10px 18px;
+  border: 3px solid;
+  border-radius: var(--pixel-corners);
+  font-family: 'Pixelify Sans', cursive;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 16px;
+  box-shadow: var(--pixel-shadow);
+  position: relative;
+  overflow: hidden;
+}
+
+.navbar-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255,255,255,0.2),
+    transparent
+  );
+  transition: all 0.5s ease;
+}
+
+.navbar-button:hover::before {
+  left: 100%;
+}
+
+.login-button {
+  background: var(--button-bg);
+  color: var(--button-text);
+  border-color: var(--button-text);
+}
+
+.login-button:hover {
+  background: var(--button-text);
+  color: var(--container-bg);
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px var(--border-color);
+}
+
+.logout-button {
+  background: var(--roast-bg);
+  color: var(--roast-border);
+  border-color: var(--roast-border);
+}
+
+.logout-button:hover {
+  background: var(--roast-border);
+  color: var(--roast-bg);
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px var(--border-color);
+}
+
+/* === Responsive Adjustments === */
+@media (max-width: 600px) {
+  .container {
+    width: 90vw;
+    padding: 15px;
+    margin-top: 60px;
+  }
+  
+  .box img {
+    height: 140px;
+  }
+  
+  .roast-result {
+    font-size: 13px;
+  }
+  
+  .navbar-container {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .navbar-controls {
+    width: 100%;
+    justify-content: space-around;
+  }
+  
+  .navbar-button {
+    padding: 8px 14px;
+    font-size: 14px;
+  }
+  
+  .theme-toggle {
+    top: 15px;
+    right: 15px;
+  }
+}
+
+/* === Special Effects === */
+.pixel-corners {
+  clip-path: polygon(
+    0% 10px, 10px 10px, 10px 0%, calc(100% - 10px) 0%, calc(100% - 10px) 10px, 100% 10px, 
+    100% calc(100% - 10px), calc(100% - 10px) calc(100% - 10px), calc(100% - 10px) 100%, 
+    10px 100%, 10px calc(100% - 10px), 0% calc(100% - 10px)
+  );
+}
+
+/* === Read More Button === */
+.read-more-btn {
+  background: none;
+  border: none;
+  color: var(--link-color);
+  cursor: pointer;
+  font-family: 'Pixelify Sans', cursive;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 2px 6px;
+  margin-left: 6px;
+  transition: all 0.2s ease;
+  text-shadow: 1px 1px 0px var(--shadow-color);
+  position: relative;
+}
+
+.read-more-btn::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--link-color);
+  transition: width 0.3s ease;
+}
+
+.read-more-btn:hover {
+  transform: translate(-1px, -1px);
+  text-shadow: 2px 2px 0px var(--shadow-color);
+}
+
+.read-more-btn:hover::after {
+  width: 100%;
+}
+
+/* === 8-bit Heart === */
+.heart {
+  color: var(--error-color);
+  font-size: 16px;
+  display: inline-block;
+  animation: pixelBounce 1s infinite alternate;
 }
